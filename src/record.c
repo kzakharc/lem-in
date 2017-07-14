@@ -50,8 +50,6 @@ void	record_room(char *line)
 		g_room = add_room();
 	else
 		g_lemin.error++;
-	if (g_room && first == 1)
-		g_lemin.head = g_room;
 }
 
 void	record_link_ant(char *line)

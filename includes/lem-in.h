@@ -60,7 +60,6 @@ typedef struct 	s_lemin
 	int 		error;
 	t_room		*start;
 	t_room		*end;
-	t_room		*head;
 }				t_lemin;
 
 t_room			*g_room;

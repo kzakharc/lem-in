@@ -15,15 +15,16 @@
 int		validation_links(void)  // TODO fix it
 {
 	int i;
+	t_room *tmp;
 
 	i = 0;
-	g_room->next = g_lemin.head;
-	while (g_room != NULL)
+	tmp = g_room;
+	while (tmp != NULL)
 	{
-		if (ft_strcmp(g_room->n_room, g_lemin.first_rm) ||
-				ft_strcmp(g_room->n_room, g_lemin.second_rm))
+		if (!ft_strcmp(tmp->n_room, g_lemin.first_rm) ||
+				!ft_strcmp(tmp->n_room, g_lemin.second_rm))
 			i++;
-		g_room = g_room->next;
+		tmp = tmp->next;
 	}
 	if (i == 2)
 		return (1);
@@ -33,15 +34,18 @@ int		validation_links(void)  // TODO fix it
 
 int		validation_room(int first)
 {
+	t_room *tmp;
+
+	tmp = g_room;
 	if (first == 1)
 		return (1);
 	else
 	{
-		while (g_room != NULL)
+		while (tmp != NULL)
 		{
-			if (!(ft_strcmp(g_room->n_room, g_lemin.str_rm)))
+			if (!(ft_strcmp(tmp->n_room, g_lemin.str_rm)))
 				return (0);
-			g_room = g_room->next;
+			tmp = tmp->next;
 		}
 	}
 	return (1);
@@ -79,16 +83,19 @@ int		validation_coor(char *str, int first)
 
 int 	repitCoor(int first)
 {
+	t_room *tmp;
+
+	tmp = g_room;
 	if (first == 1)
 		return (1);
 	else
 	{
-		while (g_room != NULL)
+		while (tmp != NULL)
 		{
-			if ((g_lemin.x_room == g_room->x) &&
-					(g_lemin.y_room == g_room->y))
+			if ((g_lemin.x_room == tmp->x) &&
+					(g_lemin.y_room == tmp->y))
 				return (0);
-			g_room = g_room->next;
+			tmp = tmp->next;
 		}
 	}
 	return (1);
