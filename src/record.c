@@ -50,6 +50,8 @@ void	record_room(char *line)
 		g_room = add_room();
 	else
 		g_lemin.error++;
+	if (g_room && first == 1)
+		g_lemin.head = g_room;
 }
 
 void	record_link_ant(char *line)
@@ -73,6 +75,20 @@ void	record_link_ant(char *line)
 	{
 		(g_lemin.fl_rooms == 0 || g_lemin.fl_ants == 0) ? g_lemin.error++ : 0;
 		g_lemin.fl_links = 1;
+		while (*line != '-')
+		{
+			i++;
+			line++;
+		}
+		g_lemin.first_rm = ft_strnew((size_t)i);
+		g_lemin.first_rm = ft_strncpy(g_lemin.first_rm, line - i, (size_t)i);
+		line++;
+		g_lemin.second_rm = ft_strnew(ft_strlen(line));
+		g_lemin.second_rm = ft_strcpy(g_lemin.second_rm, line);
+		if (validation_links())
+			g_link = add_link();
+		else
+			g_lemin.error++;
 	}
 }
 

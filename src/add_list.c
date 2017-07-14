@@ -12,6 +12,20 @@
 
 #include "../includes/lem-in.h"
 
+t_link	*add_link(void)
+{
+	t_link *tmp;
+
+	tmp = malloc(sizeof(t_link));
+	if (tmp)
+	{
+		tmp->f_room = g_lemin.first_rm;
+		tmp->s_room = g_lemin.second_rm;
+		tmp->next = g_link;
+	}
+	return (tmp);
+}
+
 void	print_data(void)
 {
 	while (g_data != NULL)

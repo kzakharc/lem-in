@@ -60,6 +60,7 @@ typedef struct 	s_lemin
 	int 		error;
 	t_room		*start;
 	t_room		*end;
+	t_room		*head;
 }				t_lemin;
 
 t_room			*g_room;
@@ -75,9 +76,11 @@ void			record_link_ant(char *line);
 void			comment(char *line);
 void			record_data(char *line);
 t_room			*add_room(void);
+t_link			*add_link(void);  // TODO write this
 void			add_data(char *str);
 int				validation_coor(char *str, int first);
 int				validation_room(int first);
+int				validation_links(void);
 int 			repitCoor(int first);
 void			print_data(void);
 

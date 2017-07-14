@@ -12,6 +12,25 @@
 
 #include "../includes/lem-in.h"
 
+int		validation_links(void)  // TODO fix it
+{
+	int i;
+
+	i = 0;
+	g_room->next = g_lemin.head;
+	while (g_room != NULL)
+	{
+		if (ft_strcmp(g_room->n_room, g_lemin.first_rm) ||
+				ft_strcmp(g_room->n_room, g_lemin.second_rm))
+			i++;
+		g_room = g_room->next;
+	}
+	if (i == 2)
+		return (1);
+	else
+		return (0);
+}
+
 int		validation_room(int first)
 {
 	if (first == 1)
