@@ -43,6 +43,7 @@ int		validation_coor(char *str, int first)
 			error++;
 		i++;
 	}
+	error += count_digit(str);
 	if (error == 0)
 	{
 		g_lemin.x_room = ft_atoi(str);

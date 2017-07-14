@@ -48,6 +48,8 @@ typedef struct 	s_lemin
 {
 	int 		ants;
 	char 		*str_rm;
+	char 		*first_rm;
+	char		*second_rm;
 	int 		x_room;
 	int			y_room;
 	int 		fl_ants;
@@ -66,6 +68,8 @@ t_link			*g_link;
 t_lemin			g_lemin;
 
 int 			count_space(char *str);
+int 			count_digit(char *str);
+void			clean_before_start(void);
 void			record_room(char *line);
 void			record_link_ant(char *line);
 void			comment(char *line);
@@ -76,6 +80,5 @@ int				validation_coor(char *str, int first);
 int				validation_room(int first);
 int 			repitCoor(int first);
 void			print_data(void);
-void			clean_before_start(void);
 
 #endif

@@ -12,6 +12,25 @@
 
 #include "../includes/lem-in.h"
 
+int 	count_digit(char *str)
+{
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) && ft_isspace(str[i - 1]))
+			c++;
+		i++;
+	}
+	if (c == 2)
+		return (0);
+	else
+		return (1);
+}
+
 int 	count_space(char *str)
 {
 	int i;
