@@ -18,24 +18,30 @@
 # include "../Lib/src/get_next_line/get_next_line.h"
 
 typedef struct	s_room t_room;
+typedef struct	s_truelink t_truelink;
+typedef struct 	s_data t_data;
+typedef struct	s_link t_link;
+
+struct			s_truelink
+{
+	t_room 		*nextdoor;
+	t_truelink	*next;
+};
 
 struct			s_room
 {
 	char 		*n_room;
 	int 		x;
 	int 		y;
+	t_truelink	*link;
 	t_room		*next;
 };
-
-typedef struct 	s_data t_data;
 
 struct 			s_data
 {
 	char 		*str;
 	t_data		*next;
 };
-
-typedef struct	s_link t_link;
 
 struct			s_link
 {
@@ -58,8 +64,8 @@ typedef struct 	s_lemin
 	int 		fl_start;
 	int 		fl_end;
 	int 		error;
-	t_room		*start;
-	t_room		*end;
+	char		*name_start;
+	char		*name_end;
 }				t_lemin;
 
 t_room			*g_room;
@@ -72,15 +78,18 @@ int 			count_digit(char *str);
 void			clean_before_start(void);
 void			record_room(char *line);
 void			record_link_ant(char *line);
-void			comment(char *line);
+int			    comment(char *line, int fd, int flag);  // TODO delete fd
 void			record_data(char *line);
 t_room			*add_room(void);
-t_link			*add_link(void);  // TODO write this
+t_truelink		*add_true_link(t_room *replica, char *str);
+t_link			*add_link(void);
 void			add_data(char *str);
 int				validation_coor(char *str, int first);
 int				validation_room(int first);
 int				validation_links(void);
 int 			repitCoor(int first);
 void			print_data(void);
+void            write_true_link(void);
+void			print_fucking_neiblabla(void);
 
 #endif

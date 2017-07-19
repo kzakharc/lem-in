@@ -12,7 +12,7 @@
 
 #include "../includes/lem-in.h"
 
-int		validation_links(void)  // TODO fix it
+int		validation_links(void)
 {
 	int i;
 	t_room *tmp;

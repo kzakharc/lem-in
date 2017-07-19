@@ -23,8 +23,7 @@ void	record_data(char *line)
 		g_data->str = line;
 		g_data->next = NULL;
 	}
-	if (((line[0] != '#') ||	!(ft_strcmp(line, "##start")) ||
-			!(ft_strcmp(line, "##end"))) && c != 1)
+	if (c != 1)
 		add_data(line);
 }
 
@@ -90,10 +89,33 @@ void	record_link_ant(char *line)
 	}
 }
 
-void	comment(char *line)
+int     comment(char *line, int fd, int flag) // TODO delete fd
 {
 	(!ft_strcmp(line, "##start")) ? g_lemin.fl_start++ : 0;
+    (!ft_strcmp(line, "##start")) ? flag++ : 0;
 	(!ft_strcmp(line, "##end")) ? g_lemin.fl_end++ : 0;
+    (!ft_strcmp(line, "##end")) ? flag += 2 : 0;
 	((g_lemin.fl_start > 1) || (g_lemin.fl_end > 1)) ? g_lemin.error++ : 0;
+    if (flag > 0)
+    {
+        record_data(line);
+        while ((get_next_line(fd, &line) > 0) && g_lemin.error == 0) {
+            ((!ft_strcmp(line, "##start")) ||
+             (!ft_strcmp(line, "##end"))) ? g_lemin.error++ : 0;
+            if ((count_space(line) == 2) && (line[0] != '#')) {
+                record_room(line);
+                if (g_lemin.error == 0) {
+                    flag == 1 ? g_lemin.name_start = g_lemin.str_rm : 0;
+                    flag == 2 ? g_lemin.name_end = g_lemin.str_rm : 0;
+                    record_data(line);
+                    return (flag);
+                }
+            } else if (line[0] == '#')
+                record_data(line);
+            else
+                g_lemin.error++;
+        }
+    }
+    return (flag);
 }
 

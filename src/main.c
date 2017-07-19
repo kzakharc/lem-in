@@ -17,7 +17,9 @@ int 	main(void)
 {
 	char	*line;
 	int 	fd;
+    int     flag;
 
+    flag = 0;
 	fd = open("test", O_RDONLY);
 	fd < 0 ? perror("fd error") : 0; // TODO delete before finish the project
 	clean_before_start();
@@ -28,10 +30,13 @@ int 	main(void)
 		else if ((count_space(line) == 2) && (line[0] != '#'))
 			record_room(line);
 		else if (line[0] == '#')
-			comment(line);
+			flag = comment(line, fd, 0);  // TODO delete fd
 		else
 			g_lemin.error++;;
-		record_data(line);
+		if (flag == 0)
+            record_data(line);
+        else
+            flag = 0;
 		if (g_lemin.error > 0)
 		{
 			write(1, "ERROR\n", 6);
@@ -44,7 +49,9 @@ int 	main(void)
 		write(1, "ERROR\n", 6);
 		return (0);
 	}
+    write_true_link();
 	if (g_lemin.error == 0)
 		print_data();
+    print_fucking_neiblabla();
 	return (0);
 }

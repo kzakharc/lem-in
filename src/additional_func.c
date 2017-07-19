@@ -12,6 +12,25 @@
 
 #include "../includes/lem-in.h"
 
+void	    print_fucking_neiblabla(void)
+{
+    t_room *tmp;
+
+    tmp = g_room;
+    ft_printf("\n");
+    while (tmp)
+    {
+        ft_printf("%s -> ", tmp->n_room);
+        while (tmp->link != NULL)
+        {
+            ft_printf("[%s]", tmp->link->nextdoor->n_room);
+            tmp->link = tmp->link->next;
+        }
+        ft_printf("\n");
+        tmp = tmp->next;
+    }
+}
+
 int 	count_digit(char *str)
 {
 	int i;
