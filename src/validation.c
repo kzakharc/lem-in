@@ -12,6 +12,20 @@
 
 #include "../includes/lem-in.h"
 
+int 	validation_true_link(char *str)
+{
+	t_truelink  *tmp;
+
+	tmp = g_room->link;
+	while (tmp != NULL)
+	{
+		if (!ft_strcmp(str, tmp->nextdoor->n_room))
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 int		validation_links(void)
 {
 	int i;

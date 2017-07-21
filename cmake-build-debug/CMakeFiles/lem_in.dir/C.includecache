@@ -400,6 +400,10 @@ stdio.h
 ../includes/lem-in.h
 /nfs/2016/k/kzakharc/lem_in/includes/lem-in.h
 
+/nfs/2016/k/kzakharc/lem_in/src/part2.c
+../includes/lem-in.h
+/nfs/2016/k/kzakharc/lem_in/includes/lem-in.h
+
 /nfs/2016/k/kzakharc/lem_in/src/record.c
 ../includes/lem-in.h
 /nfs/2016/k/kzakharc/lem_in/includes/lem-in.h

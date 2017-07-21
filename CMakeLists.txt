@@ -3,7 +3,7 @@ project(lem_in)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.cpp src/part1.c)
+set(SOURCE_FILES main.cpp src/part1.c src/part2.c)
 file(GLOB SOURCE_FILES "./src/*.c" "./includes/*.h" "./Lib/src/ft_printf/*.c"
         "./Lib/src/get_next_line/*.c" "./Lib/src/libft/*.c")
 add_executable(lem_in ${SOURCE_FILES})

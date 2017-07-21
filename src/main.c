@@ -39,19 +39,29 @@ int 	main(void)
             flag = 0;
 		if (g_lemin.error > 0)
 		{
-			write(1, "ERROR\n", 6);
+			ft_printf(RED "ERROR\n" RESET);
 			return (0);
 		}
 	}
 	if (!g_lemin.fl_ants || !g_lemin.fl_rooms || !g_lemin.fl_links ||
 			!g_lemin.fl_start || !g_lemin.fl_end)
 	{
-		write(1, "ERROR\n", 6);
+		ft_printf(RED "ERROR\n" RESET);
 		return (0);
 	}
-    write_true_link();
+    write_true_link() ? 0 : g_lemin.error++;
+	write_shortest_distance() ? 0 : g_lemin.error++;
 	if (g_lemin.error == 0)
+	{
 		print_data();
-    print_fucking_neiblabla();
+		ft_printf("\n");
+	}
+	else
+	{
+		ft_printf(RED "ERROR\n" RESET);
+		return (0);
+	}
+	run_forest();
+	while (1);
 	return (0);
 }

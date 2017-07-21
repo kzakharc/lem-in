@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/src/additional_func.c.o"
   "CMakeFiles/lem_in.dir/src/main.c.o"
   "CMakeFiles/lem_in.dir/src/part1.c.o"
+  "CMakeFiles/lem_in.dir/src/part2.c.o"
   "CMakeFiles/lem_in.dir/src/record.c.o"
   "CMakeFiles/lem_in.dir/src/validation.c.o"
   "CMakeFiles/lem_in.dir/Lib/src/ft_printf/all_for_flags.c.o"

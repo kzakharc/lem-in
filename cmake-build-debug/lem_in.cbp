@@ -325,6 +325,9 @@
 		<Unit filename="/nfs/2016/k/kzakharc/lem_in/src/part1.c">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/nfs/2016/k/kzakharc/lem_in/src/part2.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/nfs/2016/k/kzakharc/lem_in/src/record.c">
 			<Option target="lem_in"/>
 		</Unit>

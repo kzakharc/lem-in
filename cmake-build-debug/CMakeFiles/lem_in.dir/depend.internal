@@ -258,6 +258,12 @@ CMakeFiles/lem_in.dir/src/part1.c.o
  /nfs/2016/k/kzakharc/lem_in/Lib/src/libft/libft.h
  /nfs/2016/k/kzakharc/lem_in/includes/lem-in.h
  /nfs/2016/k/kzakharc/lem_in/src/part1.c
+CMakeFiles/lem_in.dir/src/part2.c.o
+ /nfs/2016/k/kzakharc/lem_in/Lib/src/ft_printf/ft_printf.h
+ /nfs/2016/k/kzakharc/lem_in/Lib/src/get_next_line/get_next_line.h
+ /nfs/2016/k/kzakharc/lem_in/Lib/src/libft/libft.h
+ /nfs/2016/k/kzakharc/lem_in/includes/lem-in.h
+ /nfs/2016/k/kzakharc/lem_in/src/part2.c
 CMakeFiles/lem_in.dir/src/record.c.o
  /nfs/2016/k/kzakharc/lem_in/Lib/src/ft_printf/ft_printf.h
  /nfs/2016/k/kzakharc/lem_in/Lib/src/get_next_line/get_next_line.h

@@ -12,25 +12,6 @@
 
 #include "../includes/lem-in.h"
 
-void	    print_fucking_neiblabla(void)
-{
-    t_room *tmp;
-
-    tmp = g_room;
-    ft_printf("\n");
-    while (tmp)
-    {
-        ft_printf("%s -> ", tmp->n_room);
-        while (tmp->link != NULL)
-        {
-            ft_printf("[%s]", tmp->link->nextdoor->n_room);
-            tmp->link = tmp->link->next;
-        }
-        ft_printf("\n");
-        tmp = tmp->next;
-    }
-}
-
 int 	count_digit(char *str)
 {
 	int i;
@@ -69,6 +50,7 @@ void	clean_before_start(void)
 	g_room = NULL;
 	g_data = NULL;
 	g_link = NULL;
+	g_lemin.n = 0;
 	g_lemin.ants = 0;
 	g_lemin.x_room = 0;
 	g_lemin.y_room = 0;

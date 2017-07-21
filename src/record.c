@@ -46,7 +46,10 @@ void	record_room(char *line)
 	g_lemin.str_rm = ft_strncpy(g_lemin.str_rm, line - count, (size_t)count);
 	if (validation_coor(line, first) && !(ft_strchr(g_lemin.str_rm, '-')) &&
 			(g_lemin.str_rm[0] != 'L') && validation_room(first))
+	{
 		g_room = add_room();
+		g_lemin.n++;
+	}
 	else
 		g_lemin.error++;
 }

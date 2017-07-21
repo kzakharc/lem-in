@@ -258,6 +258,12 @@ CMakeFiles/lem_in.dir/src/part1.c.o: ../Lib/src/libft/libft.h
 CMakeFiles/lem_in.dir/src/part1.c.o: ../includes/lem-in.h
 CMakeFiles/lem_in.dir/src/part1.c.o: ../src/part1.c
 
+CMakeFiles/lem_in.dir/src/part2.c.o: ../Lib/src/ft_printf/ft_printf.h
+CMakeFiles/lem_in.dir/src/part2.c.o: ../Lib/src/get_next_line/get_next_line.h
+CMakeFiles/lem_in.dir/src/part2.c.o: ../Lib/src/libft/libft.h
+CMakeFiles/lem_in.dir/src/part2.c.o: ../includes/lem-in.h
+CMakeFiles/lem_in.dir/src/part2.c.o: ../src/part2.c
+
 CMakeFiles/lem_in.dir/src/record.c.o: ../Lib/src/ft_printf/ft_printf.h
 CMakeFiles/lem_in.dir/src/record.c.o: ../Lib/src/get_next_line/get_next_line.h
 CMakeFiles/lem_in.dir/src/record.c.o: ../Lib/src/libft/libft.h

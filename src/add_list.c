@@ -57,21 +57,26 @@ void	    add_data(char *str)
 	tmp = g_data;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
-	tmp->next = (t_data *) malloc(sizeof(t_data));
+	tmp->next = (t_data *)malloc(sizeof(t_data));
 	tmp->next->str = str;
 	tmp->next->next = NULL;
 }
 
 t_room	    *add_room(void)
 {
-	t_room *tmp;
+	t_room 		*tmp;
+	static int	i;
 
+	i++;
 	tmp = malloc(sizeof(t_room));
 	if (tmp)
 	{
 		tmp->n_room = g_lemin.str_rm;
 		tmp->x = g_lemin.x_room;
 		tmp->y = g_lemin.y_room;
+		tmp->q = 0;
+		tmp->visit = 0;
+		tmp->number = i;
         tmp->link = NULL;
 		tmp->next = g_room;
 	}

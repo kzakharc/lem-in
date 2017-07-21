@@ -2229,6 +2229,33 @@ src/part1.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/part1.c.s
 .PHONY : src/part1.c.s
 
+src/part2.o: src/part2.c.o
+
+.PHONY : src/part2.o
+
+# target to build an object file
+src/part2.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/part2.c.o
+.PHONY : src/part2.c.o
+
+src/part2.i: src/part2.c.i
+
+.PHONY : src/part2.i
+
+# target to preprocess a source file
+src/part2.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/part2.c.i
+.PHONY : src/part2.c.i
+
+src/part2.s: src/part2.c.s
+
+.PHONY : src/part2.s
+
+# target to generate assembly for a file
+src/part2.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/src/part2.c.s
+.PHONY : src/part2.c.s
+
 src/record.o: src/record.c.o
 
 .PHONY : src/record.o
@@ -2526,6 +2553,9 @@ help:
 	@echo "... src/part1.o"
 	@echo "... src/part1.i"
 	@echo "... src/part1.s"
+	@echo "... src/part2.o"
+	@echo "... src/part2.i"
+	@echo "... src/part2.s"
 	@echo "... src/record.o"
 	@echo "... src/record.i"
 	@echo "... src/record.s"
