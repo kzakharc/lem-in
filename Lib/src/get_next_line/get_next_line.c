@@ -74,8 +74,9 @@ static int		i_know(const int fd, char **buff, char **line, char **str)
 		}
 		if ((**str) && !(t))
 		{
+			ft_strdel(buff);
 			*line = ft_strsub(*str, 0, ft_strlen(*str));
-			*str = ft_strnew(0);
+			ft_strdel(str);
 			return (1);
 		}
 	}
@@ -89,6 +90,7 @@ int				get_next_line(const int fd, char **line)
 	char			*buff;
 	static t_mult	*current;
 	char			**str;
+	int 			i;
 
 	if ((BUFF_SIZE <= 0) || (fd == (-1)))
 		return (-1);
@@ -96,5 +98,11 @@ int				get_next_line(const int fd, char **line)
 	if ((read(fd, buff, 0)) == (-1))
 		return (-1);
 	str = mult(fd, &current);
-	return (i_know(fd, &buff, line, str));
+	if (*str == NULL)
+	{
+		ft_strdel(&buff);
+		return (0);
+	}
+	i = i_know(fd, &buff, line, str);
+	return (i);
 }

@@ -12,6 +12,32 @@
 
 #include "../includes/lem-in.h"
 
+int 	comm(char *line, int flag, t_data *data)
+{
+	record_data(line, data);
+	while ((get_next_line(0, &line) > 0) && g_lemin.error == 0)
+	{
+		((!ft_strcmp(line, "##start")) ||
+		 (!ft_strcmp(line, "##end"))) ? g_lemin.error++ : 0;
+		if ((count_space(line) == 2) && (line[0] != '#'))
+		{
+			record_room(line);
+			if (g_lemin.error == 0)
+			{
+				flag == 1 ? g_lemin.name_start = g_lemin.str_rm : 0;
+				flag == 2 ? g_lemin.name_end = g_lemin.str_rm : 0;
+				record_data(line, data);
+				return (flag);
+			}
+		}
+		else if (line[0] == '#')
+			record_data(line, data);
+		else
+			g_lemin.error++;
+	}
+	return (flag);
+}
+
 int 	count_digit(char *str)
 {
 	int i;
@@ -48,7 +74,6 @@ int 	count_space(char *str)
 void	clean_before_start(void)
 {
 	g_room = NULL;
-	g_data = NULL;
 	g_link = NULL;
 	g_lemin.n = 0;
 	g_lemin.ants = 0;

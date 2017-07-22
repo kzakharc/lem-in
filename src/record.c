@@ -12,19 +12,23 @@
 
 #include "../includes/lem-in.h"
 
-void	record_data(char *line)
+t_data	*record_data(char *line, t_data *data)
 {
 	static int	c;
+	t_data		*tmp;
 
 	c++;
+	tmp = data;
 	if (c == 1)
 	{
-		g_data = (t_data *)malloc(sizeof(t_data));
-		g_data->str = line;
-		g_data->next = NULL;
+		tmp = (t_data *)malloc(sizeof(t_data));
+		tmp->str = ft_strdup(line);
+		tmp->next = NULL;
 	}
 	if (c != 1)
-		add_data(line);
+		add_data(line, tmp);
+	ft_strdel(&line);
+	return (tmp);
 }
 
 void	record_room(char *line)
@@ -67,32 +71,15 @@ void	record_link_ant(char *line)
 				g_lemin.error++;
 			i++;
 		}
-		g_lemin.fl_ants = 1;
+		(g_lemin.fl_ants == 1) ? g_lemin.fl_ants = 1 : g_lemin.error++;
 		(g_lemin.fl_rooms == 1 || g_lemin.fl_links == 1) ? g_lemin.error++ : 0;
 		g_lemin.error == 0 ? g_lemin.ants = ft_atoi(line) : 0;
 	}
 	if (ft_strchr(line, '-'))
-	{
-		(g_lemin.fl_rooms == 0 || g_lemin.fl_ants == 0) ? g_lemin.error++ : 0;
-		g_lemin.fl_links = 1;
-		while (*line != '-')
-		{
-			i++;
-			line++;
-		}
-		g_lemin.first_rm = ft_strnew((size_t)i);
-		g_lemin.first_rm = ft_strncpy(g_lemin.first_rm, line - i, (size_t)i);
-		line++;
-		g_lemin.second_rm = ft_strnew(ft_strlen(line));
-		g_lemin.second_rm = ft_strcpy(g_lemin.second_rm, line);
-		if (validation_links())
-			g_link = add_link();
-		else
-			g_lemin.error++;
-	}
+		re_link(line, i);
 }
 
-int     comment(char *line, int fd, int flag) // TODO delete fd
+int     comment(char *line, int flag, t_data *data)
 {
 	(!ft_strcmp(line, "##start")) ? g_lemin.fl_start++ : 0;
     (!ft_strcmp(line, "##start")) ? flag++ : 0;
@@ -100,25 +87,26 @@ int     comment(char *line, int fd, int flag) // TODO delete fd
     (!ft_strcmp(line, "##end")) ? flag += 2 : 0;
 	((g_lemin.fl_start > 1) || (g_lemin.fl_end > 1)) ? g_lemin.error++ : 0;
     if (flag > 0)
-    {
-        record_data(line);
-        while ((get_next_line(fd, &line) > 0) && g_lemin.error == 0) {
-            ((!ft_strcmp(line, "##start")) ||
-             (!ft_strcmp(line, "##end"))) ? g_lemin.error++ : 0;
-            if ((count_space(line) == 2) && (line[0] != '#')) {
-                record_room(line);
-                if (g_lemin.error == 0) {
-                    flag == 1 ? g_lemin.name_start = g_lemin.str_rm : 0;
-                    flag == 2 ? g_lemin.name_end = g_lemin.str_rm : 0;
-                    record_data(line);
-                    return (flag);
-                }
-            } else if (line[0] == '#')
-                record_data(line);
-            else
-                g_lemin.error++;
-        }
-    }
+		flag = comm(line, flag, data);
     return (flag);
+}
+
+void	re_link(char *line, int i)
+{
+	(g_lemin.fl_rooms == 0 || g_lemin.fl_ants == 0) ? g_lemin.error++ : 0;
+	g_lemin.fl_links = 1;
+	while (*line != '-') {
+		i++;
+		line++;
+	}
+	g_lemin.first_rm = ft_strnew((size_t) i);
+	g_lemin.first_rm = ft_strncpy(g_lemin.first_rm, line - i, (size_t) i);
+	line++;
+	g_lemin.second_rm = ft_strnew(ft_strlen(line));
+	g_lemin.second_rm = ft_strcpy(g_lemin.second_rm, line);
+	if (validation_links())
+		g_link = add_link();
+	else
+		g_lemin.error++;
 }
 

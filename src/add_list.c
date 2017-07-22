@@ -41,24 +41,29 @@ t_link	    *add_link(void)
 	return (tmp);
 }
 
-void	    print_data(void)
+void	    print_data(t_data *data)
 {
-	while (g_data != NULL)
+	t_data	*tmp;
+
+	tmp = data;
+	while (tmp != NULL)
 	{
-		ft_printf("%s\n", g_data->str);
-		g_data = g_data->next;
+		ft_printf("%s\n", tmp->str);
+		ft_strdel(&tmp->str);
+		tmp = tmp->next;
 	}
+	ft_printf("\n");
 }
 
-void	    add_data(char *str)
+void	    add_data(char *str, t_data *data)
 {
 	t_data *tmp;
 
-	tmp = g_data;
+	tmp = data;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = (t_data *)malloc(sizeof(t_data));
-	tmp->next->str = str;
+	tmp->next->str = ft_strdup(str);
 	tmp->next->next = NULL;
 }
 

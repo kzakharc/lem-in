@@ -12,15 +12,30 @@
 
 #include "../includes/lem-in.h"
 
-void		run_forest(void)
+void 	to_forest(t_trueway *tmp, int n)
 {
-	int 		i;
-	t_trueway	*tmp;
-	int			n;
+	while ((n > 0) || ((n >= 0) && g_lemin.ants == 1))
+	{
+		tmp = g_trueway;
+		while (tmp->next != NULL)
+		{
+			if (tmp->next->busy != 0)
+			{
+				tmp->number = tmp->ants - tmp->a + 1;
+				tmp->a--;
+				ft_printf("L%d-%s ", tmp->number, tmp->name);
+			}
+			else
+				tmp->busy = 0;
+			tmp = tmp->next;
+		}
+		(n - g_lemin.ants >= 0) ? ft_printf("\n") : 0;
+		n--;
+	}
+}
 
-	i = 0;
-	n = 0;
-	tmp = g_trueway;
+int		to_run(t_trueway *tmp, int n, int i)
+{
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->busy = 1;
@@ -35,44 +50,35 @@ void		run_forest(void)
 				n = tmp->number;
 				tmp->busy = 1;
 				tmp->a--;
-				ft_printf(MAG "L%d" RESET "-" YEL "%s " RESET,
-						  tmp->number, tmp->name);
-				tmp = tmp->next;
+				ft_printf("L%d-%s ", tmp->number, tmp->name);
 			}
-			else
-				tmp = tmp->next;
+			tmp = tmp->next;
 		}
 		ft_printf("\n");
 		i++;
 		tmp = g_trueway;
 	}
+	return (n);
+}
+
+void		run_forest(void)
+{
+	int 		i;
+	t_trueway	*tmp;
+	int			n;
+
+	i = 0;
+	n = 0;
+	tmp = g_trueway;
+	n = to_run(tmp, n, i);
 	tmp = g_trueway;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->busy = 0;
-	while (n > 0)
-	{
-		tmp = g_trueway;
-		while (tmp->next != NULL)
-		{
-			if (tmp->next->busy != 0)
-			{
-				tmp->number = tmp->ants - tmp->a + 1;
-				tmp->a--;
-				ft_printf(MAG "L%d" RESET "-" YEL "%s " RESET,
-						  tmp->number, tmp->name);
-				tmp = tmp->next;
-			}
-			else
-			{
-				tmp->busy = 0;
-				tmp = tmp->next;
-			}
-		}
-		ft_printf("\n");
-		n--;
-	}
-
+	to_forest(tmp, n);
+	tmp = g_trueway;
+	if (g_lemin.ants == 1)
+		ft_printf("L%d-%s ", 1, tmp->name);
 }
 
 t_trueway	*add_trueway(char *str)

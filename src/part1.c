@@ -16,30 +16,28 @@ int		write_shortest_distance(void)
 {
 	t_room	*tmp;
 	t_room	*room;
+	t_truelink *link;
 
 	tmp = g_room;
+	link = tmp->link;
 	while (tmp->visit != 2)
 		tmp = tmp->next;
 	g_trueway = add_trueway(tmp->n_room);
-	while ((tmp->q != -1) && (tmp->link != NULL))
+	while ((tmp->q != -1) && (link != NULL))
 	{
-		if (((tmp->link->nextdoor->q == tmp->q - 1) &&
-			 tmp->link->nextdoor->visit == 1) || (tmp->link->nextdoor->q == -1))
-		{
-			add_trueway_add(tmp->link->nextdoor->n_room);
-			tmp->link->nextdoor->visit = 3;
+		if (((link->nextdoor->q == tmp->q - 1) &&
+			 link->nextdoor->visit == 1) || (link->nextdoor->q == -1)) {
+			add_trueway_add(link->nextdoor->n_room);
+			link->nextdoor->visit = 3;
 			room = g_room;
-			while (ft_strcmp(tmp->link->nextdoor->n_room, room->n_room))
+			while (ft_strcmp(link->nextdoor->n_room, room->n_room))
 				room = room->next;
 			tmp = room;
-		}
-		else
-			tmp->link = tmp->link->next;
+			link = tmp->link;
+		} else
+			link = link->next;
 	}
-	if (tmp->q == -1)
-		return (1);
-	else
-		return (0);
+	return (tmp->q);
 }
 
 int		write_true_link(void)

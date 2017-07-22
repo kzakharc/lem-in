@@ -70,15 +70,14 @@ int		validation_coor(char *str, int first)
 	int i;
 	int error;
 
-	i = 0;
+	i = -1;
 	error = 0;
-	while (str[i])
+	while (str[++i])
 	{
 		if ((str[i] != ' ') && !(ft_isdigit(str[i])) && (str[i] != '-'))
 			error++;
 		else if ((str[i] == '-') && ft_isdigit(str[i - 1]))
 			error++;
-		i++;
 	}
 	error += count_digit(str);
 	if (error == 0)
