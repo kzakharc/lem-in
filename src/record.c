@@ -71,7 +71,7 @@ void	record_link_ant(char *line)
 				g_lemin.error++;
 			i++;
 		}
-		(g_lemin.fl_ants == 1) ? g_lemin.fl_ants = 1 : g_lemin.error++;
+		(g_lemin.fl_ants == 1) ? (g_lemin.error++) : (g_lemin.fl_ants = 1);
 		(g_lemin.fl_rooms == 1 || g_lemin.fl_links == 1) ? g_lemin.error++ : 0;
 		g_lemin.error == 0 ? g_lemin.ants = ft_atoi(line) : 0;
 	}
@@ -82,10 +82,15 @@ void	record_link_ant(char *line)
 int     comment(char *line, int flag, t_data *data)
 {
 	(!ft_strcmp(line, "##start")) ? g_lemin.fl_start++ : 0;
+	(!ft_strcmp(line, "##start") &&
+			(g_lemin.fl_ants == 0)) ? g_lemin.error++ : 0;
     (!ft_strcmp(line, "##start")) ? flag++ : 0;
 	(!ft_strcmp(line, "##end")) ? g_lemin.fl_end++ : 0;
+	(!ft_strcmp(line, "##end") && (g_lemin.fl_ants == 0)) ? g_lemin.error++ : 0;
     (!ft_strcmp(line, "##end")) ? flag += 2 : 0;
 	((g_lemin.fl_start > 1) || (g_lemin.fl_end > 1)) ? g_lemin.error++ : 0;
+	if (g_lemin.error > 0)
+		return (-1);
     if (flag > 0)
 		flag = comm(line, flag, data);
     return (flag);

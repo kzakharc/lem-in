@@ -66,7 +66,9 @@ void		run_forest(void)
 	int 		i;
 	t_trueway	*tmp;
 	int			n;
+	int 		f;
 
+	f = 0;
 	i = 0;
 	n = 0;
 	tmp = g_trueway;
@@ -77,7 +79,13 @@ void		run_forest(void)
 	tmp->busy = 0;
 	to_forest(tmp, n);
 	tmp = g_trueway;
-	if (g_lemin.ants == 1)
+	while (tmp)
+	{
+		tmp = tmp->next;
+		f++;
+	}
+	tmp = g_trueway;
+	if (g_lemin.ants == 1 && f != 2)
 		ft_printf("L%d-%s ", 1, tmp->name);
 }
 

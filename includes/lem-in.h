@@ -88,6 +88,8 @@ t_link			*g_link;
 t_lemin			g_lemin;
 t_trueway		*g_trueway;
 
+void 			error1(void);
+int 			error(void);
 int 			count_space(char *str);
 int 			count_digit(char *str);
 void			clean_before_start(void);

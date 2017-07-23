@@ -17,9 +17,9 @@ int 	comm(char *line, int flag, t_data *data)
 	record_data(line, data);
 	while ((get_next_line(0, &line) > 0) && g_lemin.error == 0)
 	{
-		((!ft_strcmp(line, "##start")) ||
-		 (!ft_strcmp(line, "##end"))) ? g_lemin.error++ : 0;
-		if ((count_space(line) == 2) && (line[0] != '#'))
+		if ((!ft_strcmp(line, "##start")) || (!ft_strcmp(line, "##end")))
+			error1();
+		if ((count_space(line) == 2) && (line[0] != '#') && g_lemin.error == 0)
 		{
 			record_room(line);
 			if (g_lemin.error == 0)
@@ -30,7 +30,7 @@ int 	comm(char *line, int flag, t_data *data)
 				return (flag);
 			}
 		}
-		else if (line[0] == '#')
+		else if (line[0] == '#' && g_lemin.error == 0)
 			record_data(line, data);
 		else
 			g_lemin.error++;

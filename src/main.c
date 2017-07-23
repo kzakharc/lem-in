@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
-#include <stdio.h>
 
 t_data	*for_help(char *line, t_data *data)
 {
@@ -31,6 +30,18 @@ t_data	*for_help(char *line, t_data *data)
 	return (data);
 }
 
+void	error1(void)
+{
+	ft_printf(RED "ERROR\n" RESET);
+	exit(0);
+}
+
+int 	error(void)
+{
+	ft_printf(RED "ERROR\n" RESET);
+	return (0);
+}
+
 int 	main(void)
 {
 	char	*line;
@@ -40,22 +51,21 @@ int 	main(void)
 	clean_before_start();
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
+	{
 		data = for_help(line, data);
+		if (g_lemin.error > 0)
+			return (error());
+	}
 	if (!g_lemin.fl_ants || !g_lemin.fl_rooms || !g_lemin.fl_links ||
 			!g_lemin.fl_start || !g_lemin.fl_end || g_lemin.error > 0)
-	{
-		ft_printf(RED "ERROR\n" RESET);
-		return (0);
-	}
+		return (error());
     write_true_link() ? 0 : g_lemin.error++;
 	write_shortest_distance() == -1 ? 0 : g_lemin.error++;
 	if (g_lemin.error == 0)
 		print_data(data);
 	else
-	{
-		ft_printf(RED "ERROR\n" RESET);
-		return (0);
-	}
+		return (error());
 	run_forest();
+	ft_printf("\n");
 	return (0);
 }
