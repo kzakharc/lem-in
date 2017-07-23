@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 17:35:42 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/11 17:35:43 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 16:38:27 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_data	*for_help(char *line, t_data *data)
 	else if (line[0] == '#')
 		flag = comment(line, 0, data);
 	else
-		g_lemin.error++;;
+		g_lemin.error++;
 	if (flag == 0)
 		data = record_data(line, data);
 	return (data);
@@ -36,13 +36,13 @@ void	error1(void)
 	exit(0);
 }
 
-int 	error(void)
+int		error(void)
 {
 	ft_printf(RED "ERROR\n" RESET);
 	return (0);
 }
 
-int 	main(void)
+int		main(void)
 {
 	char	*line;
 	t_data	*data;
@@ -59,7 +59,7 @@ int 	main(void)
 	if (!g_lemin.fl_ants || !g_lemin.fl_rooms || !g_lemin.fl_links ||
 			!g_lemin.fl_start || !g_lemin.fl_end || g_lemin.error > 0)
 		return (error());
-    write_true_link() ? 0 : g_lemin.error++;
+	write_true_link() ? 0 : g_lemin.error++;
 	write_shortest_distance() == -1 ? 0 : g_lemin.error++;
 	if (g_lemin.error == 0)
 		print_data(data);

@@ -6,13 +6,13 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 17:38:24 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/13 17:38:25 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 16:36:50 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-int 	comm(char *line, int flag, t_data *data)
+int		comm(char *line, int flag, t_data *data)
 {
 	record_data(line, data);
 	while ((get_next_line(0, &line) > 0) && g_lemin.error == 0)
@@ -38,7 +38,7 @@ int 	comm(char *line, int flag, t_data *data)
 	return (flag);
 }
 
-int 	count_digit(char *str)
+int		count_digit(char *str)
 {
 	int i;
 	int c;
@@ -57,7 +57,7 @@ int 	count_digit(char *str)
 		return (1);
 }
 
-int 	count_space(char *str)
+int		count_space(char *str)
 {
 	int i;
 
@@ -76,6 +76,7 @@ void	clean_before_start(void)
 	g_room = NULL;
 	g_link = NULL;
 	g_lemin.n = 0;
+	g_lemin.f = 0;
 	g_lemin.ants = 0;
 	g_lemin.x_room = 0;
 	g_lemin.y_room = 0;

@@ -6,20 +6,20 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 17:23:01 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/13 17:23:02 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 17:28:09 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-int 	validation_true_link(char *str)
+int		validation_true_link(char *str)
 {
-	t_truelink  *tmp;
+	t_truelink	*tmp;
 
 	tmp = g_room->link;
 	while (tmp != NULL)
 	{
-		if (!ft_strcmp(str, tmp->nextdoor->n_room))
+		if (!ft_strcmp(str, tmp->nbr->n_room))
 			return (0);
 		tmp = tmp->next;
 	}
@@ -28,8 +28,8 @@ int 	validation_true_link(char *str)
 
 int		validation_links(void)
 {
-	int i;
-	t_room *tmp;
+	int		i;
+	t_room	*tmp;
 
 	i = 0;
 	tmp = g_room;
@@ -65,12 +65,10 @@ int		validation_room(int first)
 	return (1);
 }
 
-int		validation_coor(char *str, int first)
+int		validation_coor(char *str, int first, int i)
 {
-	int i;
 	int error;
 
-	i = -1;
 	error = 0;
 	while (str[++i])
 	{
@@ -82,21 +80,22 @@ int		validation_coor(char *str, int first)
 	error += count_digit(str);
 	if (error == 0)
 	{
-		g_lemin.x_room = ft_atoi(str);
+		g_lemin.f = ft_atoi(str);
+		(g_lemin.f > 2147483647) ? error1() : (g_lemin.x_room = (int)g_lemin.f);
 		if (ft_isspace(*str))
 			str++;
 		while (!(ft_isspace(*str)))
 			str++;
-		g_lemin.y_room = ft_atoi(str);
-		if (repitCoor(first))
-			return (1);
+		g_lemin.f = ft_atoi(str);
+		(g_lemin.f > 2147483647) ? error1() : (g_lemin.y_room = (int)g_lemin.f);
+		return (repitcoor(first));
 	}
 	return (0);
 }
 
-int 	repitCoor(int first)
+int		repitcoor(int first)
 {
-	t_room *tmp;
+	t_room	*tmp;
 
 	tmp = g_room;
 	if (first == 1)
@@ -113,4 +112,3 @@ int 	repitCoor(int first)
 	}
 	return (1);
 }
-

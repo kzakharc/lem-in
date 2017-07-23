@@ -35,7 +35,7 @@ struct			s_trueway
 
 struct			s_truelink
 {
-	t_room 		*nextdoor;
+	t_room 		*nbr;
 	t_truelink	*next;
 };
 
@@ -79,6 +79,7 @@ typedef struct 	s_lemin
 	int 		fl_end;
 	int 		error;
 	int 		n;
+	long int	f;
 	char		*name_start;
 	char		*name_end;
 }				t_lemin;
@@ -103,11 +104,11 @@ t_link			*add_link(void);
 t_trueway		*add_trueway(char *str);
 void			add_trueway_add(char *str);
 void			add_data(char *str, t_data *data);
-int				validation_coor(char *str, int first);
+int				validation_coor(char *str, int first, int i);
 int				validation_room(int first);
 int				validation_links(void);
 int 			validation_true_link(char *str);
-int 			repitCoor(int first);
+int 			repitcoor(int first);
 void			print_data(t_data *data);
 int				write_true_link(void);
 void            write_start_end(void);
@@ -115,7 +116,7 @@ int				shortest_distance(int count, int i);
 int 			write_distance(t_truelink *tmp, int *mass, int count, int d);
 int				write_shortest_distance(void);
 void			run_forest(void);
-int				to_run(t_trueway *tmp, int n, int i);
+int				to_run(t_trueway *tmp, int n, int i, int f);
 void 			to_forest(t_trueway *tmp, int n);
 void			re_link(char *line, int i);
 int 			comm(char *line, int flag, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 17:14:03 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/12 17:14:04 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 17:24:35 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_data	*record_data(char *line, t_data *data)
 
 void	record_room(char *line)
 {
-	int 		count;
+	int			count;
 	static int	first;
 
 	count = 0;
@@ -48,7 +48,7 @@ void	record_room(char *line)
 	}
 	g_lemin.str_rm = ft_strnew((size_t)count);
 	g_lemin.str_rm = ft_strncpy(g_lemin.str_rm, line - count, (size_t)count);
-	if (validation_coor(line, first) && !(ft_strchr(g_lemin.str_rm, '-')) &&
+	if (validation_coor(line, first, -1) && !(ft_strchr(g_lemin.str_rm, '-')) &&
 			(g_lemin.str_rm[0] != 'L') && validation_room(first))
 	{
 		g_room = add_room();
@@ -73,39 +73,41 @@ void	record_link_ant(char *line)
 		}
 		(g_lemin.fl_ants == 1) ? (g_lemin.error++) : (g_lemin.fl_ants = 1);
 		(g_lemin.fl_rooms == 1 || g_lemin.fl_links == 1) ? g_lemin.error++ : 0;
-		g_lemin.error == 0 ? g_lemin.ants = ft_atoi(line) : 0;
+		g_lemin.error == 0 ? g_lemin.f = ft_atoi(line) : 0;
+		(g_lemin.f > 2147483647) ? error1() : (g_lemin.ants = (int)g_lemin.f);
 	}
 	if (ft_strchr(line, '-'))
 		re_link(line, i);
 }
 
-int     comment(char *line, int flag, t_data *data)
+int		comment(char *line, int flag, t_data *data)
 {
 	(!ft_strcmp(line, "##start")) ? g_lemin.fl_start++ : 0;
 	(!ft_strcmp(line, "##start") &&
 			(g_lemin.fl_ants == 0)) ? g_lemin.error++ : 0;
-    (!ft_strcmp(line, "##start")) ? flag++ : 0;
+	(!ft_strcmp(line, "##start")) ? flag++ : 0;
 	(!ft_strcmp(line, "##end")) ? g_lemin.fl_end++ : 0;
 	(!ft_strcmp(line, "##end") && (g_lemin.fl_ants == 0)) ? g_lemin.error++ : 0;
-    (!ft_strcmp(line, "##end")) ? flag += 2 : 0;
+	(!ft_strcmp(line, "##end")) ? flag += 2 : 0;
 	((g_lemin.fl_start > 1) || (g_lemin.fl_end > 1)) ? g_lemin.error++ : 0;
 	if (g_lemin.error > 0)
 		return (-1);
-    if (flag > 0)
+	if (flag > 0)
 		flag = comm(line, flag, data);
-    return (flag);
+	return (flag);
 }
 
 void	re_link(char *line, int i)
 {
 	(g_lemin.fl_rooms == 0 || g_lemin.fl_ants == 0) ? g_lemin.error++ : 0;
 	g_lemin.fl_links = 1;
-	while (*line != '-') {
+	while (*line != '-')
+	{
 		i++;
 		line++;
 	}
-	g_lemin.first_rm = ft_strnew((size_t) i);
-	g_lemin.first_rm = ft_strncpy(g_lemin.first_rm, line - i, (size_t) i);
+	g_lemin.first_rm = ft_strnew((size_t)i);
+	g_lemin.first_rm = ft_strncpy(g_lemin.first_rm, line - i, (size_t)i);
 	line++;
 	g_lemin.second_rm = ft_strnew(ft_strlen(line));
 	g_lemin.second_rm = ft_strcpy(g_lemin.second_rm, line);
@@ -114,4 +116,3 @@ void	re_link(char *line, int i)
 	else
 		g_lemin.error++;
 }
-

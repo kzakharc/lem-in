@@ -6,13 +6,13 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 13:03:03 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/21 13:03:05 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 17:11:56 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-void 	to_forest(t_trueway *tmp, int n)
+void			to_forest(t_trueway *tmp, int n)
 {
 	while ((n > 0) || ((n >= 0) && g_lemin.ants == 1))
 	{
@@ -34,7 +34,7 @@ void 	to_forest(t_trueway *tmp, int n)
 	}
 }
 
-int		to_run(t_trueway *tmp, int n, int i)
+int				to_run(t_trueway *tmp, int n, int i, int f)
 {
 	while (tmp->next != NULL)
 		tmp = tmp->next;
@@ -54,30 +54,24 @@ int		to_run(t_trueway *tmp, int n, int i)
 			}
 			tmp = tmp->next;
 		}
-		ft_printf("\n");
+		((g_lemin.ants == 1 && f == 2) ||
+				(n == g_lemin.ants && f == 2)) ? 0 : ft_printf("\n");
 		i++;
 		tmp = g_trueway;
 	}
 	return (n);
 }
 
-void		run_forest(void)
+void			run_forest(void)
 {
-	int 		i;
+	int			i;
 	t_trueway	*tmp;
 	int			n;
-	int 		f;
+	int			f;
 
 	f = 0;
 	i = 0;
 	n = 0;
-	tmp = g_trueway;
-	n = to_run(tmp, n, i);
-	tmp = g_trueway;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->busy = 0;
-	to_forest(tmp, n);
 	tmp = g_trueway;
 	while (tmp)
 	{
@@ -85,11 +79,19 @@ void		run_forest(void)
 		f++;
 	}
 	tmp = g_trueway;
+	n = to_run(tmp, n, i, f);
+	tmp = g_trueway;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->busy = 0;
+	if (g_lemin.ants != 1 && f != 2)
+		to_forest(tmp, n);
+	tmp = g_trueway;
 	if (g_lemin.ants == 1 && f != 2)
 		ft_printf("L%d-%s ", 1, tmp->name);
 }
 
-t_trueway	*add_trueway(char *str)
+t_trueway		*add_trueway(char *str)
 {
 	t_trueway	*tmp;
 
@@ -106,7 +108,7 @@ t_trueway	*add_trueway(char *str)
 	return (tmp);
 }
 
-void		add_trueway_add(char *str)
+void			add_trueway_add(char *str)
 {
 	t_trueway	*tmp;
 

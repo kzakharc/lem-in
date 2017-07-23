@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+long int		ft_atoi(const char *str)
 {
-	int	b;
-	int	d;
+	long int	b;
+	long int	d;
 
 	b = 0;
 	while (ft_isspace(*str) == 1)
