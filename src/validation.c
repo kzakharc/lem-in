@@ -6,11 +6,11 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/13 17:23:01 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/23 17:28:09 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 18:39:47 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 int		validation_true_link(char *str)
 {

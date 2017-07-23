@@ -6,11 +6,11 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 17:35:42 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/23 16:38:27 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 19:23:43 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 t_data	*for_help(char *line, t_data *data)
 {
@@ -24,7 +24,7 @@ t_data	*for_help(char *line, t_data *data)
 	else if (line[0] == '#')
 		flag = comment(line, 0, data);
 	else
-		g_lemin.error++;
+		error1();
 	if (flag == 0)
 		data = record_data(line, data);
 	return (data);

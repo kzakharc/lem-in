@@ -6,11 +6,11 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 17:14:03 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/23 17:24:35 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 18:39:37 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 t_data	*record_data(char *line, t_data *data)
 {
@@ -48,6 +48,8 @@ void	record_room(char *line)
 	}
 	g_lemin.str_rm = ft_strnew((size_t)count);
 	g_lemin.str_rm = ft_strncpy(g_lemin.str_rm, line - count, (size_t)count);
+	if (g_lemin.str_rm[0] == '\0')
+		error1();
 	if (validation_coor(line, first, -1) && !(ft_strchr(g_lemin.str_rm, '-')) &&
 			(g_lemin.str_rm[0] != 'L') && validation_room(first))
 	{
@@ -71,6 +73,10 @@ void	record_link_ant(char *line)
 				g_lemin.error++;
 			i++;
 		}
+		while (*line == '0')
+			line++;
+		if (*line == '\0')
+			error1();
 		(g_lemin.fl_ants == 1) ? (g_lemin.error++) : (g_lemin.fl_ants = 1);
 		(g_lemin.fl_rooms == 1 || g_lemin.fl_links == 1) ? g_lemin.error++ : 0;
 		g_lemin.error == 0 ? g_lemin.f = ft_atoi(line) : 0;

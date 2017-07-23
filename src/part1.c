@@ -6,11 +6,11 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/19 15:57:15 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/07/23 16:45:37 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 18:39:15 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 int		write_shortest_distance(void)
 {

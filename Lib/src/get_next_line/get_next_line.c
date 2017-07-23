@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 19:37:30 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/03/23 15:18:52 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/07/23 18:14:12 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int				get_next_line(const int fd, char **line)
 	char			*buff;
 	static t_mult	*current;
 	char			**str;
-	int 			i;
+	int				i;
 
 	if ((BUFF_SIZE <= 0) || (fd == (-1)))
 		return (-1);
